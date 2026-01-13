@@ -6,7 +6,7 @@ import rehypeMathjax from 'rehype-mathjax';
 
 // https://astro.build/config
 export default defineConfig({
-	base: '/simulacion-2025-20',
+	base: '/simulacion-2026-10',
 	markdown: {
 		remarkPlugins: [remarkMath],
 		rehypePlugins: [rehypeMathjax],
