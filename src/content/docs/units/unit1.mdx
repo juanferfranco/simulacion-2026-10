@@ -2,4 +2,200 @@
 title: Unidad 1
 unitId: unit1
 ---
+import { Aside } from '@astrojs/starlight/components';
 
+## Introducción 📜
+
+La aleatoriedad es un concepto fundamental en la simulación de sistemas interactivos, ya 
+que permite modelar comportamientos impredecibles y variabilidad en los sistemas. En 
+esta unidad, explorarás cómo generar y utilizar números aleatorios en tus simulaciones, 
+comprendiendo su importancia y aplicaciones. A través de ejemplos como los paseos aleatorios, 
+aprenderás a implementar movimientos y comportamientos que emulan la aleatoriedad presente en 
+la naturaleza. Este conocimiento te proporcionará las herramientas necesarias para desarrollar 
+simulaciones más realistas y dinámicas.
+
+## Rúbrica de evaluación de la unidad 📝
+
+:::note[Transparencia]
+Esta rúbrica se socializa antes de la sustentación. La sustentación se 
+basa en lo presentado en la aplicación y lo documentado en la bitácora.
+:::
+
+### Requisito de salida (condición necesaria)
+
+:::caution[Para poder cerrar la evaluación y registrar la nota]
+La **bitácora de reflexión** debe estar diligenciada antes de terminar 
+la sesión y debe ser enseñada al profesor antes de abandonar el aula.
+:::
+
+---
+
+### Rúbrica analítica
+
+:::tip[Evidencias evaluadas]
+
+1) Funcionamiento de la aplicación + documentación en bitácora.
+2) Sustentación a partir de la app y la bitácora
+
+:::
+
+| Criterio (peso) | Cumple plenamente (5.0) | Se cumple medianamente (4.0)| Problemas importantes (3.0)| Falta comprensión básica (2.0) | No hay evidencia (0.0)
+|---|---|---|---|---|---|
+| **1. Aplicación + bitácora (60%)** | La app se ejecuta sin fallos en el entorno acordado. Evidencia completa y verificable en bitácora. Todo consistente con lo mostrado en la demo. | La app funciona y cumple lo esencial. La bitácora permite verificar, pero hay **1–2 vacíos menores**| La app funciona parcialmente o depende de condiciones no declaradas. Bitácora con **vacíos importantes** o incompleta. | La app no corre o no demuestra lo requerido. La bitácora no permite verificación de la app.| No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación||||||
+| **2. Sustentación (40%)** | Responde a las preguntas con precisión, conectando: **(a) lo que se ve**, **(b) cómo está hecho**, y **(c) por qué**. Usa su bitácora para justificar decisiones. Reconoce límites/errores y propone cómo probar/mejorar. | Respuestas correctas pero con **imprecisiones menores** o justificación superficial. Usa parcialmente la bitácora para sustentar. | Responde solo “qué hizo” pero le cuesta explicar “cómo” o “por qué”. Necesita guía para conectar con su propia evidencia/bitácora. | No logra responder de forma coherente o responde sin relación con lo presentado/documentado. Evidencia falta de comprensión básica del trabajo entregado. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación||||||
+---
+
+:::tip[Cálculo de la nota]
+
+$$
+Nota = C_1*0.6  + C_2*0.4
+$$
+
+:::
+
+---
+
+## Set: ¿Qué aprenderás en esta unidad? 💡
+
+Vas a explorar la aleatoriedad como una herramienta fundamental en la simulación de sistemas 
+interactivos. Esta herramienta te permitirá producir comportamientos impredecibles y variabilidad.
+
+### Actividad 01
+
+#### La aleatoriedad en el arte generativo
+
+- [Generative Art Exploration Chapter I Tracing the Roots: The History of Generative Art](https://youtu.be/d2LC6Am9bZI?si=IK0T-uEZbbQHUncX)
+- [How To Draw With Code | Casey Reas](https://youtu.be/_8DMEHxOLQE?si=7a4UMzEpKgSninVb)  
+- [Artist Spotlight | Who is Refik Anadol?](https://youtu.be/zBYVm2wYzDU?si=IOUOOhTEr5l9qTu1)
+- [Discover Generative Artist Tyler Hobbs](https://youtu.be/8tTGJvijoDw?si=vJd_8lXJ5X__litL)
+
+:::caution[📤 Bitácora] 
+Piensa y describe en una sola frase y en tus propias palabras cómo la aleatoriedad influye en el arte generativo.
+:::
+
+## Seek: Investigación 🔎
+
+Vas a indagar y a experimentar con los conceptos fundamentales de la [unidad 0 del texto guía](https://natureofcode.com/random/). 
+
+### Actividad 02
+
+#### Caminatas aleatorias
+
+Analicemos juntos el código del ejemplo Example 0.1: A Traditional Random Walk del 
+[texto guía](https://natureofcode.com/random/#example-01-a-traditional-random-walk).
+
+:::caution[📤 Bitácora] 
+Realiza el siguiente experimento y reporta los resultados en tu bitácora:
+
+* Modifica el código del ejemplo Example 0.1: A Traditional Random Walk.
+* Antes de ejecutar el código, escribe en tu bitácora qué esperas que suceda.
+* Ejecuta el código y escribe en tu bitácora qué sucedió realmente.
+* Ocurrió lo que esperabas? ¿Por qué crees que sí o por qué crees que no?
+:::
+
+
+### Actividad 03
+
+#### Distribuciones de probabilidad
+
+Analicemos juntos y detenidamente [este](https://p5js.org/reference/p5/randomGaussian/) ejemplo.
+
+:::caution[📤 Bitácora] 
+* En tus propias palabras cuál es la diferencia entre una distribución uniforme y una no uniforme de números aleatorios. 
+* Modifica el código de la caminata aleatoria para que utilice una distribución no uniforme, favoreciendo el movimiento hacia la derecha.
+:::
+
+### Actividad 04
+
+#### Distribución Normal
+
+Analicemos juntos y detenidamente [este](https://natureofcode.com/random/#example-04-a-gaussian-distribution) ejemplo.
+
+:::caution[📤 Bitácora] 
+Una vez has entendido el concepto de distribución normal, vas a pensar en una nueva manera de visualizarlo.
+
+* Crea un nuevo sketch en p5.js que represente una distribución normal.
+* Copia el código en tu bitácora.
+* Coloca en enlace a tu sketch en p5.js en tu bitácora.
+* Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.
+:::
+
+### Actividad 05
+
+#### Distribución personalizada: Lévy flight
+
+Analicemos juntos y detenidamente el concepto de [Lévy flight](https://natureofcode.com/random/#a-custom-distribution-of-random-numbers).
+
+:::caution[📤 Bitácora] 
+Ahora vas a:
+
+* Crea un nuevo sketch en p5.js donde modifiques uno de los ejemplos anteriores y adiciones de Lévy flight.
+* Explica por qué usaste esta técnica y qué resultados esperabas obtener.
+* Copia el código en tu bitácora.
+* Coloca en enlace a tu sketch en p5.js en tu bitácora.
+* Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.
+:::
+
+
+### Actividad 06
+
+#### Ruido Perlin
+
+Analicemos junto el concepto de [ruido Perlin](https://natureofcode.com/random/#a-smoother-approach-with-perlin-noise) 
+analizando la figura 0.4: "A graph of Perlin noise values over time (left) and of random noise values over time (right)".
+
+:::caution[📤 Bitácora] 
+Una vez has entendido el concepto de ruido Perlin, vas a pensar en una nueva manera de visualizarlo.
+
+* Crea un nuevo sketch en p5.js donde los visualices.
+* Explica el concepto qué resultados esberabas obtener.
+* Copia el código en tu bitácora.
+* Coloca en enlace a tu sketch en p5.js en tu bitácora.
+* Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.
+:::
+
+## Apply: Aplicación 🛠
+
+Vas a aplicar los conceptos con los que experimentaste en la fase de investigación para 
+crear una aplicación de arte generativo interactivo en tiempo real.
+
+### Actividad 07
+
+#### Creación de obra generativa
+
+Vas a crear una obra generativa interactiva en tiempo real utilizando los conceptos de aleatoriedad que has aprendido en esta unidad.  
+Tu obra debe:
+
+* Usar al menos tres conceptos estudiados en esta unidad COMBINADOS de manera creativa y coherente.
+* Tu obra de ser interactiva y generativa en tiempo real. Puedes usar el mouse, el teclado o cualquier 
+otro sensor de entrada para interactuar con la obra.
+
+:::caution[📤 Bitácora] 
+Reporta en tu bitácora lo siguiente:
+
+* Un texto donde expliques el concepto de obra generativa.
+* Copia el código en tu bitácora.
+* Coloca en enlace a tu sketch en p5.js en tu bitácora.
+* Selecciona una captura de pantalla de tu sketch y colócala en tu bitácora.
+:::
+
+## Reflect: Consolidación 🤔
+
+Ahora que has experimentado con la aleatoriedad y has aplicado estos conceptos en 
+una pieza de arte generativo, es momento de reflexionar sobre el proceso y los 
+resultados obtenidos.
+
+
+### Actividad 08
+
+:::caution[📤 Bitácora] 
+
+En tu bitácora de aprendizaje. Responde con tus propias palabras a las siguientes preguntas.
+
+1.  Describe la diferencia fundamental entre la aleatoriedad generada por `random()` y la apariencia de aleatoriedad del Ruido Perlin (`noise()`). ¿En qué tipo de situación usarías cada una?
+2.  Explica con tus palabras qué es una distribución de probabilidad. ¿Qué diferencia visual produce una caminata aleatoria con una distribución uniforme versus una con una distribución normal?
+3.  ¿Cuál es el papel de la aleatoriedad en el arte generativo? Menciona al menos dos funciones distintas que cumple
+4.  Piensa en tu obra final (Actividad 07). Describe uno de los conceptos de aleatoriedad que usaste y explica por qué fue una elección adecuada para lograr el efecto que buscabas.
+5.  ¿Qué es un "paseo" o "caminata" (walk) en el contexto de la simulación? ¿Qué característica particular tiene una caminata de tipo "Lévy flight"?
