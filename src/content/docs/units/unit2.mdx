@@ -83,6 +83,228 @@ Algunos ejemplos: [Procedural Animation](https://openprocessing.org/sketch/42971
 Distruta esta actividad como quieras. Busca inspiración. Te deseo que te enamores del tema, es irresistible. Te pediré que me cuentes qué trabajo te gustó más y por qué.
 :::
 
+## Seek: Investigación 🔎
+
+Vas a indagar y a experimentar con los conceptos fundamentales de la [unidad 1 del texto guía](https://natureofcode.com/vectors/). En particular, queremos 
+explorar los conceptos de vector, velocidad y aceleración y cómo los podemos usar para controlar el movimiento de objetos gráficos en un entorno interactivo.
+
+### Actividad 02
+
+#### Introducción a los vectores
+
+En esta actividad vamos a repasar algunos conceptos básicos de los vectores. Te propondré que analicemos 
+juntos algunos de los ejemplos del texto de guía.
 
 
+Comencemos por el ejemplo: [Example 1.2: Bouncing Ball with Vectors!](https://natureofcode.com/vectors/#example-12-bouncing-ball-with-vectors)
 
+:::caution[📤 Bitácora] 
+1. ¿Cómo funciona la suma dos vectores en p5.js?
+2. ¿Por qué esta línea position = position + velocity; no funciona?
+:::
+
+### Actividad 03
+
+#### Repasa
+
+Realiza este ejercicio del libro [Exercise 1.1](https://natureofcode.com/vectors/#exercise-11) 
+
+:::caution[📤 Bitácora]
+1. ¿Qué tuviste que hacer para hacer la conversión propuesta?
+2. Escribe el código que utilizaste para resolver el ejercicio.
+:::
+
+### Actividad 04
+
+#### Experimenta
+
+Dale una mirada a este código:
+
+``` js
+let position;
+
+function setup() {
+    createCanvas(400, 400);
+    position = createVector(6,9);
+    console.log(position.toString());
+    playingVector(position);
+    console.log(position.toString());
+    noLoop();
+}
+
+function playingVector(v){
+    v.x = 20;
+    v.y = 30;
+}
+
+function draw() {
+    background(220);
+    console.log("Only once");
+}
+
+```
+
+:::caution[📤 Bitácora]
+
+1. ¿Qué resultado esperas obtener en el programa anterior?
+2. ¿Qué resultado obtuviste?
+3. Recuerda los conceptos de paso por valor y paso por referencia en programación.
+4. ¿Qué tipo de paso se está realizando en el código?
+5. ¿Qué aprendiste?
+::: 
+
+### Actividad 05
+
+#### Explora posibilidades
+
+Vamos a darle una mirada a la clase p5.Vector [aquí](https://p5js.org/reference/p5/p5.Vector/).
+
+:::caution[📤 Bitácora]
+1. ¿Para qué sirve el método mag()? Nota que hay otro método llamado magSq(). ¿Cuál es la diferencia entre ambos? ¿Cuál es más eficiente?
+2. ¿Para qué sirve el método normalize()?
+3. Te encuentras con un periodista en la calle y te pregunta ¿Para qué sirve el método dot()? ¿Qué le responderías en un frase?
+4. El método dot() tiene una versión estática y una de instancia. ¿Cuál es la diferencia entre ambas?
+5. Ahora el mismo periodista curioso de antes te pregunta si le puedes dar una intuición geométrica acerca del producto cruz. 
+Entonces te pregunta ¿Cuál es la interpretación geométrica del producto cruz de dos vectores? Tu respuesta debe incluir qué pasa con la orientación y la magnitud del vector resultante.
+6. ¿Para que te puede servir el método dist()?
+7. ¿Para qué sirven los métodos normalize() y limit()?
+:::
+
+### Actividad 06
+
+##### Interpolamos?
+
+Vas a tomar como inspiración este ejemplo de la referencia de p5.js:
+
+``` js
+function setup() {
+    createCanvas(100, 100);
+}
+
+function draw() {
+    background(200);
+
+    let v0 = createVector(50, 50);
+    let v1 = createVector(30, 0);
+    let v2 = createVector(0, 30);
+    let v3 = p5.Vector.lerp(v1, v2, 0.5);
+    drawArrow(v0, v1, 'red');
+    drawArrow(v0, v2, 'blue');
+    drawArrow(v0, v3, 'purple');
+}
+
+function drawArrow(base, vec, myColor) {
+    push();
+    stroke(myColor);
+    strokeWeight(3);
+    fill(myColor);
+    translate(base.x, base.y);
+    line(0, 0, vec.x, vec.y);
+    rotate(vec.heading());
+    let arrowSize = 7;
+    translate(vec.mag() - arrowSize, 0);
+    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+    pop();
+}
+```
+
+Vas a modificarlo para generar este resultado:
+
+![Resultado](../../../assets/vectorLerp.gif)
+
+- Analiza cómo funciona el método lerp(). 
+- Nota que además de la interpolación lineal de vectores, también puedes hacer interpolación lineal de colores con el método lerpColor().
+
+Dedica un tiempo a estudiar cómo se dibuja una flecha en el método drawArrow().
+
+:::caution[📤 Bitácora]
+En tu bitácora escribe:
+
+1. El código que genera el resultado que te pedí.
+2. ¿Cómo funciona lerp() y lerpColor().
+3. ¿Cómo se dibuja una flecha usando drawArrow()?
+:::
+
+### Actividad 07
+
+#### Motion 101
+
+En la sección del texto guía llamada [Motion with vectors](https://natureofcode.com/vectors/#motion-with-vectors), 
+el autor propone un marco de movimiento llamado motion 101. Así mismo, el [ejemplo 1.7](https://natureofcode.com/vectors/#example-17-motion-101-velocity) 
+muetra cómo se aplica este marco en un ejemplo simple.
+
+:::caution[📤 Bitácora]
+1. Cuál es el concepto del marco motion 101 y cómo se interpreta geométricamente.
+2. ¿Cómo se aplica motion 101 en el ejemplo?
+:::
+
+### Actividad 08
+
+#### Experimentando con la aceleración
+
+En el libro proponen una regla (que eventualmente se rompe cuando conviene):
+
+The goal for programming motion is to come up with an algorithm for calculating acceleration and then let the trickle-down effect work its magic.
+
+Para investigador el significado de esta frase te propone que construyas un experimento donde analices cómo se comporta un objeto en movimiento con:
+
+- Aceleración constante.
+- Aceleración aleatoria.
+- Aceleración hacia el mouse.
+
+:::caution[📤 Bitácora]
+1. ¿Qué observaste cuando usas cada una de las aceleraciones propuestas?
+:::
+
+## Apply: Aplicación 🛠
+
+En esa fase vas a aplicar los conceptos investigados y vas a crear una pieza de arte generativo interactivo 
+en tiempo real usando vectores y el marco motion 101.
+
+
+### Actividad 09
+
+####  Creación de obra generativa
+
+Vas a crear una obra generativa interactivo en tiempo real que utilice los conceptos de motion 101. La idea de este 
+sistema generativo es experimentar con reglas distintas de manipulación para la aceleración.
+
+Recuerda que tu obra debe ser interactiva y generativa en tiempo real. Puedes usar el mouse, el teclado o cualquier 
+otro sensor de entrada para interactuar con la obra.
+
+:::caution[📤 Bitácora]
+En tu bitácora:
+
+1. Describe el concepto de **tu obra generativa.** Explica el concepto de tu obra generativa, qué regla aplicaste 
+para la aceleración por qué si fue una decisión de diseño o qué te evoca si fue una exploración artística.
+2. El código de la aplicación.
+3. Un enlace al proyecto en el editor de p5.js.
+4. Selecciona capturas de pantalla representativas de tu pieza de arte generativa.
+:::
+
+
+## Reflect: Consolidación 🤔
+
+Es momento de consolidar lo aprendido en esta unidad.
+
+
+### Actividad 10
+
+Para esta última actividad de la unidad te pediré que regreses a uno de los ejemplos del texto guía. Se trata 
+del [Ejemplo 1.10](https://natureofcode.com/vectors/#example-110-accelerating-toward-the-mouse). Estudia en detalle 
+el código. Ahora te pediré que revices en detalle una parte de la charla del artista Jared Tarbell que encontrarás 
+[aquí](https://youtu.be/Yakdo2Df3GE?si=sB2uRh7Z64cBAd85&t=2978) en el minuto 49:38 hasta el 54:02. Luego de esto revisa 
+el proyecto original que menciona Jared. Se trata del trabajo Clusters del artista [Jeffrey Ventrella](https://www.ventrella.com/Clusters/). 
+Puedes encontrar una explicación del propio artista [aquí](https://vimeo.com/1048238799).
+
+Enriquecido con esta información, te perdirá que crees algo inspirado en las ideas de Jared y Jeffrey y en lo que trabajaste 
+en esta unidad sobre vectores y motion 101.
+
+:::caution[📤 Bitácora] 
+
+En tu bitácora de aprendizaje:
+
+1. Describe el concepto de **tu obra generativa.** Explica el concepto de tu obra generativa.
+2. El código de la aplicación.
+3. Un enlace al proyecto en el editor de p5.js.
+4. Selecciona capturas de pantalla representativas de tu pieza de arte generativa.
