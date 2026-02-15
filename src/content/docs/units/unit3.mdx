@@ -72,14 +72,237 @@ En esta unidad manipularas la aceleración de los elementos visuales a través d
 
 ### Actividad 01
 
+Te presentaré un artista interesante que trabaja con sistemas dinámicos y fuerzas en sus piezas de arte generativa. Se trata 
+de [Robert Hodgin](https://roberthodgin.com/). Observa la obra [Magnetosphere](https://roberthodgin.com/project/magnetosphere). 
+También te dejaré [aquí](https://www.youtube.com/watch?v=vmUodu6K-bA) una charla reciente del artista para que conozcas un poco más 
+sobre él. 
+
 
 :::caution[📤 Bitácora] 
+Luego ver el video con la charla de Robert Hodgin, te dejo la bitácora para que desahogues tus pensamientos, emociones, 
+reflexiones, preguntas, etc. sobre lo que viste y escuchaste. Te dejo una pista de lo que yo estoy sintiendo ahora: estamos dejando de usar 
+el cerebro. Nos rendimos ante la inmediatez del resultado, el esfuerzo se diluye, el proceso, el asombro, la exploración, el descubrimiento, 
+la frustración, todo, se lo come sin masticar un sistema económico sin sentido e insasiable. Ya no importa aprender, importa ganar, aunque 
+uno no sepa qué. Nos convertimos lentamente en curadores que no tienen más alternativa que consumir lo que el algorimo tenga para ofrecer. Así, 
+no vale la pena.
 :::
 
 ## Seek: Investigación 🔎
 
+En esta unidad trabajarás alrededor de las ideas del capítulo de fuerzas del libro [The Nature of Code](https://natureofcode.com/forces/).
 
 ### Actividad 02
+
+En esta actividad vamos a recordar el marco de movimiento que hemos venido explorando y lo vamos a extender para incluir fuerzas.
+
+
+#### Marco Motion 101
+
+Rerpasemo rápido de qué se trata:
+
+``` js
+
+let mover;
+
+function setup() {
+    createCanvas(640, 240);
+    mover = new Mover();
+}
+
+function draw() {
+    background(255);
+    mover.show();
+    mover.update();
+    mover.checkEdges();
+}
+
+.
+.
+.
+
+update() {
+
+    // Aquí calculo la aceleración
+    .
+    .
+    .
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(this.topSpeed);
+    this.position.add(this.velocity);
+}
+.
+.
+.
+
+```
+
+### Actividad 05
+
+#### ¿Y qué relación tiene esto de las leyes de Newton con al arte generativo?
+
+Antes de comenzar, disfruta esta [simulación](https://wipaweeeeee.github.io/creativeCoding/lawsOfAttraction/index.html) donde puedes experimentar de manera creativa las leyes de la atracción. Ahora si, volviendo 
+al lío de Monte Pío (pero no tanto). 
+
+La ecuación vectorial de la segunda ley de Newton se expresa como:
+
+$$
+\sum \vec{F} = m \vec{a}
+$$
+
+Donde:
+
+- La fuerza neta o la sumatoria de todas las fuerzas que actúan sobre un objeto:
+
+  $$
+  \sum \vec{F}
+  $$
+
+- Masa del objeto:
+
+  $$
+  m
+  $$
+
+- Aceleración del objeto:
+
+  $$
+  \vec{a}
+  $$
+
+Nota entonces que: 
+
+$$
+\vec{a} = \frac{\sum \vec{F}}{m}
+$$
+
+Y lo siguiente lo dejaré a tu criterio, finalmente tu eres quien toma las decisiones en tu 
+mundo de arte generativo ¿Qué tal si la masa es igual a 1? Yo no veo por qué no, finalmente, 
+en el mundo de los pixeles el artista manda (¿O no?) 😉.
+
+$$
+\vec{a} = \sum \vec{F}
+$$
+
+Entonces ya tenemos la relación. En la unidad anterior tu definías en cada **frame** 
+de la simulación un algoritmo para la aceleración. Ahora, la aceleración en cada frame la 
+calcularemos como la influencia de todas las fuerzas sobre nuestros elementos gráficos 😹.
+
+Si volvemos a nuestro texto guía: The Nature of code, verás que un elemento gráfica que se mueva 
+en el canvas tendrá mínimo estas propiedades:
+
+``` js
+class Mover {
+  constructor() {
+    this.position = createVector();
+    this.velocity = createVector();
+    this.acceleration = createVector();
+  }
+}
+```
+
+Ahora, considera que en un frame actúan sobre este elemento dos fuerzas: viento y gravedad. Por 
+tanto, en ese frame aplicarás las dos fuerzas:
+
+``` js
+mover.applyForce(wind);
+```
+
+y luego:
+
+``` js
+mover.applyForce(gravity);
+```	
+
+Finalmente, en el método `applyForce` de la clase `Mover` tendrás algo como:
+
+``` js
+applyForce(force) {
+  this.acceleration = force;
+}
+```
+
+Y listo ¿Cierto?
+(No olvides que queremos calcular la aceleración en cada frame como la sumatoria de todas las fuerzas 
+que actúan sobre un objeto.)
+
+1. ¿Qué problema le ves a este planteamiento?  
+2. ¿Qué solución propones?  
+3. ¿Cómo lo implementarías en p5.js?
+
+
+#### La fuerza neta debe ser acumulativa
+
+Ya te diste cuenta entonces que la fuerza neta es la sumatoria de todas las fuerzas que actúan sobre un objeto. Ahora, 
+¿Qué pasa si en un frame actúan sobre un objeto dos fuerzas? ¿Cómo calculas la aceleración resultante?
+
+``` js
+mover.applyForce(wind);
+mover.applyForce(gravity);
+.
+.
+.
+``` 
+
+``` js
+applyForce(force) {
+  // Segunda ley de Newton, pero con acumulación de fuerza, sumando todas las fuerzas de entrada a la aceleración
+  this.acceleration.add(force);
+}
+```
+
+⚠️
+
+Te diste cuenta qué pasó aquí con respecto a la actividad anterior? Vuelve a mirar.
+
+Entonces en cada frame, la aceleración se calcula como la sumatoria de todas las fuerzas que actúan sobre un objeto:
+
+``` js	
+mover.applyForce(wind);
+mover.applyForce(gravity);
+mover.update();
+```
+
+Y en el método update() se actualiza la velocidad y la posición del objeto:
+
+``` js
+update() {
+    this.velocity.add(this.acceleration);
+    this.position.add(this.velocity);
+    this.acceleration.mult(0);
+}
+```
+
+Pero calma 🧘. Notaste algo raro al final de update()?
+
+1. ¿Por qué es necesario multiplicar la aceleración por cero en cada frame?
+2. ¿Por qué se multiplica por cero **justo al final** de update()?
+
+
+### Actividad 07
+
+#### En mi mundo los pixeles si tienen masa
+
+Como en tu mundo los pixeles tienen masa, entonces, ¿Qué pasa si en un frame actúan sobre un objeto dos fuerzas? ¿Cómo calculas la aceleración resultante?
+
+``` js
+mover.applyForce(wind);
+mover.applyForce(gravity);
+```
+
+``` js
+applyForce(force) {
+    // Asume que la masa es 10
+    force.div(10);
+    this.acceleration.add(force);
+}
+```
+
+¿Y listo cierto? Pues ¡No! 🤣 
+
+¿Qué ves raro?  
+(Recuerda, ¿Cuándo se pasa algo a un función por valor y cuándo por referencia? En este caso, **force** es 
+objeto de la clase p5.Vector, es decir, es un objeto que se pasa por referencia. ¿Qué implica esto?)
+
 
 
 :::caution[📤 Bitácora] 
@@ -87,44 +310,36 @@ En esta unidad manipularas la aceleración de los elementos visuales a través d
 
 ### Actividad 03
 
+#### Vamos a modelar fuerzas
+
 
 :::caution[📤 Bitácora]
 :::
+
+## Apply: Aplicación 🛠
+
+Es hora de regalarte la oportunidad de amazar arcilla digital y moldear tu propia obra de arte generativa.
 
 ### Actividad 04
 
+####  Creación de obra generativa
+
+Vas a crear una obra generativa interactivo en tiempo real que explore el uso de fuerzas para manipular la 
+aceleración de los elementos visuales. Sin embargo, para este ejercicio te pediré que hagas algo distinto. 
+Parte de HISTORIA que quieres contar y dejar que tu obra la narre por ti. Recuerda que estamos construyendo 
+sistemas generativos. Tu historia determinerá las reglas del sistema, y el sistema generativo, narrará 
+la historia. ¿Nos dejamos sorprender? De todas maneras no olvides algo importante. Debes incluir interactividad 
+para que el usuario pueda influir en el sistema.
 
 :::caution[📤 Bitácora]
-::: 
+En tu bitácora:
 
-### Actividad 05
-
-:::caution[📤 Bitácora]
-:::
-
-### Actividad 06
-
-:::caution[📤 Bitácora]
-
-:::
-
-### Actividad 07
-
-
-:::caution[📤 Bitácora]
-:::
-
-### Actividad 08
-
-
-:::caution[📤 Bitácora]
-:::
-
-
-### Actividad 09
-
-
-:::caution[📤 Bitácora]
+1. Describe el concepto de **tu obra generativa.** Explica la historia que quieres contar y cómo crees que 
+esta influencierá las fuerzas que usarás para manipular la aceleración de los elementos visuales. Es decir, 
+explica cómo las fuerzas moldearán las reglas que determinarán las fuerzas.
+2. El código de la aplicación.
+3. Un enlace al proyecto en el editor de p5.js.
+4. Selecciona capturas de pantalla representativas de tu pieza de arte generativa.
 :::
 
 
