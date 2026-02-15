@@ -72,7 +72,7 @@ En esta unidad manipularas la aceleración de los elementos visuales a través d
 
 ### Actividad 01
 
-Te presentaré un artista interesante que trabaja con sistemas dinámicos y fuerzas en sus piezas de arte generativa. Se trata 
+Te presentaré un artista interesante que trabaja con sistemas dinámicos y fuerzas en sus piezas de arte generativo. Se trata 
 de [Robert Hodgin](https://roberthodgin.com/). Observa la obra [Magnetosphere](https://roberthodgin.com/project/magnetosphere). 
 También te dejaré [aquí](https://www.youtube.com/watch?v=vmUodu6K-bA) una charla reciente del artista para que conozcas un poco más 
 sobre él. 
@@ -80,11 +80,11 @@ sobre él.
 
 :::caution[📤 Bitácora] 
 Luego ver el video con la charla de Robert Hodgin, te dejo la bitácora para que desahogues tus pensamientos, emociones, 
-reflexiones, preguntas, etc. sobre lo que viste y escuchaste. Te dejo una pista de lo que yo estoy sintiendo ahora: estamos dejando de usar 
-el cerebro. Nos rendimos ante la inmediatez del resultado, el esfuerzo se diluye, el proceso, el asombro, la exploración, el descubrimiento, 
-la frustración, todo, se lo come sin masticar un sistema económico sin sentido e insasiable. Ya no importa aprender, importa ganar, aunque 
-uno no sepa qué. Nos convertimos lentamente en curadores que no tienen más alternativa que consumir lo que el algorimo tenga para ofrecer. Así, 
-no vale la pena.
+reflexiones, preguntas, etc, sobre lo que viste y escuchaste. Te dejo una pista de lo que yo estoy sintiendo ahora: estamos, cada vez más, 
+dejando de usar "partes del cerebro". Nos rendimos ante la inmediatez del resultado. El esfuerzo, el proceso, el asombro, 
+la exploración, el descubrimiento, la frustración, todos, se diluyen. Comemos sin masticar. Vivmos en un sistema económico 
+insaciable. Ya no importa aprender, importa ganar, aunque uno no sepa qué. Nos convertimos, ojalá, lentamente en diletantes que no 
+tienen más alternativa que consumir lo que el algoritmo tenga para ofrecer. Y aún estoy preguntándome si así vale la pena...
 :::
 
 ## Seek: Investigación 🔎
@@ -94,7 +94,6 @@ En esta unidad trabajarás alrededor de las ideas del capítulo de fuerzas del l
 ### Actividad 02
 
 En esta actividad vamos a recordar el marco de movimiento que hemos venido explorando y lo vamos a extender para incluir fuerzas.
-
 
 #### Marco Motion 101
 
@@ -122,10 +121,11 @@ function draw() {
 
 update() {
 
-    // Aquí calculo la aceleración
+    /* 
     .
+    . Aquí calculo o me "invento" la aceleración.
     .
-    .
+    */
     this.velocity.add(this.acceleration);
     this.velocity.limit(this.topSpeed);
     this.position.add(this.velocity);
@@ -136,12 +136,14 @@ update() {
 
 ```
 
-### Actividad 05
+Ahora, le que queremos explorar en esta unidad es cómo calcular o "inventar" la aceleración. 
+En la unidad anterior, tú definías en cada **frame** de la simulación un algoritmo para la aceleración. 
+Ahora, la aceleración en cada frame la calcularemos como la influencia de todas las fuerzas 
+sobre nuestros elementos gráficos.
 
-#### ¿Y qué relación tiene esto de las leyes de Newton con al arte generativo?
-
-Antes de comenzar, disfruta esta [simulación](https://wipaweeeeee.github.io/creativeCoding/lawsOfAttraction/index.html) donde puedes experimentar de manera creativa las leyes de la atracción. Ahora si, volviendo 
-al lío de Monte Pío (pero no tanto). 
+Un ruta para abordar la cuestión anterior es visitar las leyes de Newton. ¿Y qué relación tiene esto 
+de las leyes de Newton con lo que estamos haciendo? Pues, la segunda ley de Newton es la que nos da la 
+relación entre fuerza, masa y aceleración.
 
 La ecuación vectorial de la segunda ley de Newton se expresa como:
 
@@ -183,12 +185,10 @@ $$
 \vec{a} = \sum \vec{F}
 $$
 
-Entonces ya tenemos la relación. En la unidad anterior tu definías en cada **frame** 
-de la simulación un algoritmo para la aceleración. Ahora, la aceleración en cada frame la 
-calcularemos como la influencia de todas las fuerzas sobre nuestros elementos gráficos 😹.
+Entonces ya tenemos la relación. 
 
-Si volvemos a nuestro texto guía: The Nature of code, verás que un elemento gráfica que se mueva 
-en el canvas tendrá mínimo estas propiedades:
+Si volvemos a nuestro texto guía: The Nature of code, verás que un elemento gráfica que se 
+mueva en el canvas tendrá mínimo estas propiedades:
 
 ``` js
 class Mover {
@@ -217,40 +217,10 @@ Finalmente, en el método `applyForce` de la clase `Mover` tendrás algo como:
 
 ``` js
 applyForce(force) {
-  this.acceleration = force;
-}
-```
-
-Y listo ¿Cierto?
-(No olvides que queremos calcular la aceleración en cada frame como la sumatoria de todas las fuerzas 
-que actúan sobre un objeto.)
-
-1. ¿Qué problema le ves a este planteamiento?  
-2. ¿Qué solución propones?  
-3. ¿Cómo lo implementarías en p5.js?
-
-
-#### La fuerza neta debe ser acumulativa
-
-Ya te diste cuenta entonces que la fuerza neta es la sumatoria de todas las fuerzas que actúan sobre un objeto. Ahora, 
-¿Qué pasa si en un frame actúan sobre un objeto dos fuerzas? ¿Cómo calculas la aceleración resultante?
-
-``` js
-mover.applyForce(wind);
-mover.applyForce(gravity);
-.
-.
-.
-``` 
-
-``` js
-applyForce(force) {
-  // Segunda ley de Newton, pero con acumulación de fuerza, sumando todas las fuerzas de entrada a la aceleración
+  // Recuerdo, estamos asumiendo que la masa es 1, entonces no es necesario dividir la fuerza por la masa.
   this.acceleration.add(force);
 }
 ```
-
-⚠️
 
 Te diste cuenta qué pasó aquí con respecto a la actividad anterior? Vuelve a mirar.
 
@@ -272,17 +242,17 @@ update() {
 }
 ```
 
-Pero calma 🧘. Notaste algo raro al final de update()?
+Pero calma. Notaste algo raro al final de update()?
 
-1. ¿Por qué es necesario multiplicar la aceleración por cero en cada frame?
-2. ¿Por qué se multiplica por cero **justo al final** de update()?
+¿Por qué es necesario multiplicar la aceleración por cero en cada frame?
 
+¿Por qué se multiplica por cero **justo al final** de update()?
 
-### Actividad 07
+Te dejo las preguntas para que pares y reflexiones. 
 
-#### En mi mundo los pixeles si tienen masa
+Antes de seguir, pensemos qué pasa si no queremos asumir que la masa es igual a 1.
 
-Como en tu mundo los pixeles tienen masa, entonces, ¿Qué pasa si en un frame actúan sobre un objeto dos fuerzas? ¿Cómo calculas la aceleración resultante?
+En este caso tendríamos:
 
 ``` js
 mover.applyForce(wind);
@@ -299,26 +269,52 @@ applyForce(force) {
 
 ¿Y listo cierto? Pues ¡No! 🤣 
 
-¿Qué ves raro?  
-(Recuerda, ¿Cuándo se pasa algo a un función por valor y cuándo por referencia? En este caso, **force** es 
-objeto de la clase p5.Vector, es decir, es un objeto que se pasa por referencia. ¿Qué implica esto?)
+¿Qué ves raro? 
 
+Recuerda esta cuestión por favor: paso por valor y paso por referencia. 
+En este caso, **force** es objeto de la clase p5.Vector, es decir, es un 
+objeto que se pasa por referencia. ¿Qué implica esto?
+
+Entonces cómo debería ser el método `applyForce` para que funcione 
+correctamente sin asumir que la masa es igual a 1?
+
+``` js
+applyForce(force) {
+    // Asume que la masa es 10
+    let f = p5.Vector.div(force, 10);
+    this.acceleration.add(f);
+}
+```
 
 
 :::caution[📤 Bitácora] 
+Reporta en tu bitácora tus reflexiones sobre lo que acabas de aprender.
 :::
 
 ### Actividad 03
 
-#### Vamos a modelar fuerzas
+#### Vamos a crear fuerzas
 
+Cuando cramos fuerzas en nuestras obras generativas, tenemos dos opciones:
+
+1. Nos inventamos la fuerza.
+2. Modelamos una fuerza que existe en el mundo real.
+
+Vamos a analizar juntos ambas opciones usando el 
+[material de The Nature of Code](https://natureofcode.com/forces/#creating-forces).
 
 :::caution[📤 Bitácora]
+En tu bitácora, vas a crear tres obras generativas para cada una de las siguientes fuerzas:
+
+1. Fricción.
+2. Resistencia al aire y fluidos
+3. Atracción gravitacional.
+
 :::
 
 ## Apply: Aplicación 🛠
 
-Es hora de regalarte la oportunidad de amazar arcilla digital y moldear tu propia obra de arte generativa.
+Es hora de regalarte la oportunidad de amazar arcilla digital y moldear tu propia obra de arte generativo.
 
 ### Actividad 04
 
@@ -326,10 +322,10 @@ Es hora de regalarte la oportunidad de amazar arcilla digital y moldear tu propi
 
 Vas a crear una obra generativa interactivo en tiempo real que explore el uso de fuerzas para manipular la 
 aceleración de los elementos visuales. Sin embargo, para este ejercicio te pediré que hagas algo distinto. 
-Parte de HISTORIA que quieres contar y dejar que tu obra la narre por ti. Recuerda que estamos construyendo 
-sistemas generativos. Tu historia determinerá las reglas del sistema, y el sistema generativo, narrará 
-la historia. ¿Nos dejamos sorprender? De todas maneras no olvides algo importante. Debes incluir interactividad 
-para que el usuario pueda influir en el sistema.
+Parte de una "HISTORIA" que quieres contar, pero deja que tu obra generativa la narre por ti. Recuerda 
+que estamos construyendo sistemas generativos. Tu definierás la historia como las reglas del sistema, 
+y el sistema generativo, narrará la historia. ¿Nos dejamos sorprender? De todas maneras no olvides 
+algo importante. Debes incluir interactividad para que el usuario pueda influir en el sistema.
 
 :::caution[📤 Bitácora]
 En tu bitácora:
@@ -342,12 +338,24 @@ explica cómo las fuerzas moldearán las reglas que determinarán las fuerzas.
 4. Selecciona capturas de pantalla representativas de tu pieza de arte generativa.
 :::
 
-
 ## Reflect: Consolidación 🤔
 
+### Actividad 05
 
-### Actividad 10
+:::note[Algunos cursos de IDED muy interesantes]
+Sabías que el programa tiene un par de cursos muy interesantes de la línea de experiencias interactivas:
+
+* Prototipado 3D	
+* Mecanismos
+
+En estos cursos se exploran conceptos relacionados con fuerzas, movimiento, sistemas dinámicos, etc. En esta 
+actvidad de reflexión vas a ver cómo los conceptos del cursos se pueden llevar al mundo físico. Además, te dejo 
+una invitación y es que le preguntes a un compañero de la línea de experiencias trabajos interesantes realizados 
+en estos cursos.
+:::
 
 :::caution[📤 Bitácora] 
-
+1. Explica detalladamente en tu bitácora ¿Qué es el marco de movimiento motion 101 y cómo se relacionan: fuerza, aceleración, velocidad y posición?
+2. Vas a analizar [este](https://youtu.be/VewUU7mYzTk?si=xPbovNR9X3pY3Tkb) video sobre el artista Alexander Calder. Selecciona una de sus obras y luego 
+crea una obra generativa inspirada en la obra de Calder que seleccionaste y el marco de movimiento motion 101 con fuerzas que trabajamos en esta unidad.
 :::
