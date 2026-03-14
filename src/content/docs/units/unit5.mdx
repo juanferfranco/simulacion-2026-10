@@ -2,3 +2,288 @@
 title: Unidad 5
 unitId: unit5
 ---
+import { Aside } from '@astrojs/starlight/components';
+
+## Introducción 📜
+
+Un sistema de partículas es un **modelo computacional** para gestionar colecciones dinámicas de
+entidades. Cada entidad —cada partícula— tiene estado, ciclo de vida y comportamiento propios.
+El sistema existe para orquestar esas entidades: crearlas, actualizarlas, eliminarlas y, en algunos
+casos, exponer fuerzas que afectan a todas ellas.
+
+**p5.js es el medio, no el fin.** Los mismos principios que explorarás aquí —emisión, ciclo de vida,
+fuerzas, herencia, gestión de memoria— están presentes en TouchDesigner cuando construyes sistemas
+de partículas reactivos al audio, en Unity cuando configuras un VFX Graph, en Blender cuando usas
+Geometry Nodes, y en cualquier motor gráfico profesional. Lo que cambia entre herramientas es la
+interfaz y la sintaxis. Lo que permanece es el modelo.
+
+Este tipo de sistemas ha dado lugar a referentes visuales notables: Robert Hodgin (flight404)
+exploró la física de partículas como lenguaje visual; el VFX Graph de Unity permite sistemas
+de millones de partículas procesados en GPU; los sistemas de partículas de TouchDesigner se usan
+en instalaciones reactivas en tiempo real; Blender Geometry Nodes es hoy un entorno de simulación
+de propósito general que incluye partículas. Entender el modelo subyacente es lo que te permite
+mover de un entorno a otro con fluidez.
+
+<Aside type="note">
+En cada ejemplo que estudies, separa mentalmente tres capas:
+
+1. **Comportamiento**: qué hace cada partícula — cómo se mueve, cómo envejece, cómo muere.
+2. **Estructura**: cómo se organiza el programa — clases, arrays, quién crea, quién elimina.
+3. **Visualización**: cómo se ve — forma, color, tamaño, transparencia.
+
+Estas tres capas son independientes. Puedes cambiar una sin tocar las demás. Reconocer
+esa independencia es la competencia central de esta unidad.
+</Aside>
+
+## Rúbrica de evaluación de la unidad 📝
+
+:::note[Transparencia]
+Esta rúbrica se socializa antes de la sustentación. La sustentación se
+basa en lo presentado en la aplicación y lo documentado en la bitácora.
+:::
+
+### Requisito de salida (condición necesaria)
+
+:::caution[Para poder cerrar la evaluación y registrar la nota]
+La **bitácora de reflexión** debe estar diligenciada antes de terminar
+la sesión y debe ser enseñada al profesor antes de abandonar el aula.
+La presentación de la bitácora de reflexión es un requisito indispensable
+para montar la nota final en la plataforma académica. Si no se cumple este
+requisito, la nota final de la unidad será 0.0.
+:::
+
+---
+
+### Rúbrica analítica
+
+:::tip[Evidencias evaluadas]
+
+1) Funcionamiento de la aplicación + documentación en bitácora.
+2) Sustentación a partir de la app y la bitácora
+
+:::
+
+| Criterio (peso) | Cumple plenamente (5.0) | Se cumple medianamente (4.0) | Problemas importantes (3.0) | Falta comprensión básica (2.0) | No hay evidencia (0.0) |
+|---|---|---|---|---|---|
+| **1. Aplicación + bitácora (40%)** | La pieza se ejecuta sin fallos. La bitácora documenta el proceso completo: concepto, bocetos, mapa de decisiones, tabla comparativa, análisis por capas de los ejemplos. Todo es consistente y verificable. | La pieza funciona y la bitácora cubre lo esencial, pero hay **1-2 vacíos menores** (ej: la tabla comparativa está incompleta o falta algún análisis). | La pieza funciona parcialmente. La bitácora tiene **vacíos importantes** (ej: no hay bocetos, o no hay mapa de decisiones, o faltan actividades del Seek). | La pieza no corre o no demuestra los conceptos requeridos. La bitácora no permite verificar el proceso. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación||||||
+| **2. Sustentación (60%)** | Responde con precisión conectando: **(a)** qué se ve en la pieza, **(b)** cómo está hecho (estructura del código), y **(c)** por qué tomó esas decisiones de diseño. Explica la separación de capas. Puede describir cómo trasladaría los conceptos a otra herramienta. Justifica decisiones narrativas/emocionales. | Respuestas correctas pero con **imprecisiones menores**. Explica el "qué" y el "cómo" pero la justificación del "por qué" es superficial. La transferencia a otras herramientas es genérica. | Responde "qué hizo" pero le cuesta explicar "cómo" o "por qué". No distingue claramente entre las capas del sistema. Necesita guía para conectar decisiones de diseño con el concepto. | No logra responder coherentemente. No distingue entre partícula, sistema y visualización. No puede explicar las decisiones de diseño de su propia pieza. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación||||||
+
+---
+
+:::tip[Cálculo de la nota]
+
+$$
+Nota = C_1*0.4  + C_2*0.6
+$$
+
+:::
+
+---
+
+## Set: ¿Qué aprenderás en esta unidad? 💡
+
+En esta unidad comprenderás qué es un sistema de partículas como modelo computacional y cómo
+sus principios se transfieren a cualquier herramienta profesional.
+
+Específicamente aprenderás:
+
+- Qué es una partícula como entidad con **estado** y **ciclo de vida**.
+- Qué es un emisor como abstracción que **gestiona colecciones dinámicas**.
+- Cómo las **fuerzas**, la **herencia** y el **polimorfismo** enriquecen el sistema.
+- Cómo separar **comportamiento**, **estructura** y **visualización** como capas independientes.
+- Que estos principios son transferibles a TouchDesigner, Unity, Blender u otra herramienta profesional.
+
+Los sistemas de partículas se ejecutan en tiempo real con la CPU procesando cada entidad en cada
+frame. La **gestión de memoria** —cuándo crear y cuándo eliminar partículas— no es un detalle
+técnico menor: es parte central del modelo. Un sistema que nunca elimina partículas muertas
+degrada el rendimiento hasta hacer inusable la aplicación.
+
+## Seek: Investigación 🔎
+
+Vas a analizar cuatro actividades que cubren cinco ejemplos del [capítulo de partículas del texto guía](https://natureofcode.com/particles)
+(4.2, 4.4, 4.5, 4.6 y 4.7). En lugar de estudiarlos de forma aislada, los compararás entre sí
+para identificar qué cambia y qué se mantiene a medida que el modelo crece en complejidad.
+
+### Actividad 01 — Anatomía de una partícula (Example 4.2: An Array of Particles)
+
+Estudia el [Example 4.2: An Array of Particles](https://natureofcode.com/particles/#example-42-an-array-of-particles).
+
+:::caution[📤 Bitácora]
+
+**Capa de comportamiento:**
+
+1. ¿Qué propiedades tiene cada partícula? Clasifícalas: ¿cuáles definen su estado físico? ¿Cuáles su estado vital?
+2. ¿Qué condición determina que una partícula "muere"? ¿Es una muerte instantánea o gradual?
+3. ¿Cómo se actualiza la partícula en cada frame? Identifica el patrón motion 101 dentro de la partícula.
+
+**Capa de estructura:**
+
+4. ¿Quién crea las partículas? ¿En qué momento?
+5. ¿Quién decide cuándo eliminar una partícula del array?
+6. ¿Por qué se recorre el array en orden inverso para eliminar? ¿Qué pasaría si no se hiciera así?
+7. Si no eliminaras nunca las partículas, ¿qué pasaría con la memoria y el rendimiento? Haz el experimento: comenta la línea que elimina y observa el frame rate.
+
+**Capa de visualización:**
+
+8. ¿Qué elementos visuales usa para representar una partícula?
+9. ¿Cómo se conecta el "tiempo de vida" con la apariencia visual?
+10. Si quisieras cambiar la representación visual (por ejemplo, usar líneas en vez de círculos), ¿qué cambiarías y qué NO cambiarías?
+
+:::
+
+### Actividad 02 — Del array al sistema: la abstracción del emisor (Example 4.4: A System of Systems)
+
+Estudia el [Example 4.4: A System of Systems](https://natureofcode.com/particles/#example-44-a-system-of-systems).
+
+:::caution[📤 Bitácora]
+
+**Comparación con Example 4.2:**
+
+1. ¿Qué responsabilidades que antes estaban en `draw()` ahora están dentro de la clase `Emitter`?
+2. ¿Cuál es la ventaja de encapsular la lógica de emisión en una clase separada?
+3. En este ejemplo hay un array de emitters. ¿Quién crea los emitters? ¿Quién crea las partículas dentro de cada emitter?
+4. Dibuja un diagrama que muestre la jerarquía: `sketch → [emitters] → [partículas]`. ¿Cuántos niveles de "colección" hay?
+
+**Transferencia conceptual:**
+
+5. Describe este ejemplo usando palabras que NO mencionen p5.js, JavaScript, ni ninguna herramienta específica. Usa solo términos como: entidad, estado, colección, emisor, ciclo de vida, fuerza.
+
+:::
+
+### Actividad 03 — Heterogeneidad: herencia y polimorfismo (Example 4.5)
+
+Estudia el [Example 4.5: A Particle System with Inheritance and Polymorphism](https://natureofcode.com/particles/#example-45-a-particle-system-with-inheritance-and-polymorphism).
+
+:::caution[📤 Bitácora]
+
+1. ¿Qué tienen en común las subclases de partículas? ¿Qué tienen de diferente?
+2. ¿Por qué es importante que el Emitter no necesite saber qué tipo específico de partícula está gestionando? Explica esto con tus propias palabras.
+3. Si mañana quisieras agregar un tercer tipo de partícula, ¿qué tendrías que crear y qué NO tendrías que modificar?
+4. Compara con Example 4.2: ¿cambió la lógica del Emitter? ¿Cambió la lógica de muerte? ¿Qué capa del sistema se modificó y cuáles permanecieron intactas?
+
+:::
+
+### Actividad 04 — Fuerzas y partículas (Examples 4.6 y 4.7)
+
+Estudia los dos ejemplos siguientes:
+- [Example 4.6: A Particle System with Forces](https://natureofcode.com/particles/#example-46-a-particle-system-with-forces)
+- [Example 4.7: A Particle System with a Repeller](https://natureofcode.com/particles/#example-47-a-particle-system-with-a-repeller)
+
+:::caution[📤 Bitácora]
+
+**Fuerzas globales vs. locales:**
+
+1. En Example 4.6, ¿dónde se define la gravedad? ¿Quién la aplica a las partículas? ¿Es una fuerza global o local?
+2. En Example 4.7, ¿qué diferencia hay entre la gravedad y la fuerza del repeller? ¿Dónde "vive" cada una?
+3. La fuerza del repeller depende de la distancia entre la partícula y el repeller. ¿Qué principio físico se está modelando?
+4. ¿Cambió la clase Particle entre Example 4.6 y 4.7? ¿Qué implica esto sobre la separación entre comportamiento de la partícula y fuerzas externas?
+
+**Tabla comparativa:**
+
+Completa la siguiente tabla en tu bitácora:
+
+| Aspecto | 4.2 | 4.4 | 4.5 | 4.6 | 4.7 |
+|---|---|---|---|---|---|
+| ¿Quién crea partículas? | | | | | |
+| ¿Hay clase Emitter? | | | | | |
+| ¿Hay herencia? | | | | | |
+| ¿Hay fuerzas externas? | | | | | |
+| ¿Hay interacción entre elementos? | | | | | |
+| ¿Cómo mueren las partículas? | | | | | |
+
+**Modificación quirúrgica:**
+
+Elige UNA de estas modificaciones sobre el Example 4.7 e impleméntala:
+
+- **(a)** Cambiar la visualización sin cambiar fuerzas ni estructura.
+- **(b)** Cambiar las fuerzas sin cambiar la estructura ni la visualización.
+- **(c)** Cambiar la condición de muerte sin cambiar la visualización ni las fuerzas.
+
+Para la modificación que elegiste, responde:
+
+- ¿Qué líneas de código tocaste?
+- ¿Qué clases/funciones modificaste?
+- ¿Qué partes del programa NO necesitaste modificar?
+- ¿Por qué fue posible hacer este cambio sin afectar las demás capas?
+
+:::
+
+## Apply: Aplicación 🛠
+
+### Actividad 05 — Ejercicio de diseño: "Ciclos de vida"
+
+#### Brief de diseño
+
+Diseña e implementa una pieza interactiva en p5.js que use un sistema de partículas para
+representar un **ciclo de vida** de tu elección.
+
+Un ciclo de vida es cualquier proceso donde algo nace, se transforma y desaparece. Puede ser
+literal (semillas → flores → pétalos que caen), metafórico (ideas → conversaciones → olvido),
+emocional (calma → agitación → disolución), natural (estrellas → supernovas → polvo cósmico),
+o social (rumores que se propagan, se fragmentan y mueren).
+
+**Requisitos conceptuales del sistema:**
+
+1. Al menos dos tipos de partículas con comportamientos distintos (herencia y polimorfismo).
+2. Ciclo de vida visible: las partículas deben nacer, transformarse visualmente durante su vida,
+   y morir. La muerte no puede ser solo "desaparecer": debe comunicar algo.
+3. Al menos una fuerza que afecte a las partículas (gravedad, atracción, repulsión, viento, u otra).
+4. La interacción del usuario debe tener un propósito narrativo claro: no es "hacer click para
+   emitir más partículas", sino que la interacción debe tener un significado dentro del ciclo de
+   vida que elegiste.
+5. Gestión correcta de memoria: las partículas muertas se eliminan.
+
+:::note
+**Lo que se evalúa NO es la complejidad técnica del código** (eso lo puede generar una IA), sino:
+
+- La coherencia entre el concepto de ciclo de vida y las decisiones de diseño.
+- Que puedas explicar cómo cada elemento del sistema contribuye a comunicar la idea.
+- Que la pieza transmita algo reconocible al verla e interactuar con ella.
+:::
+
+:::caution[📤 Bitácora]
+
+Documenta el proceso completo:
+
+1. **Concepto**: 2-3 frases sobre qué ciclo de vida representarás y qué emoción o idea quieres
+   comunicar.
+2. **Bocetos**: al menos 2 bocetos (pueden ser a mano) que muestren cómo imaginas la pieza antes
+   de programarla.
+3. **Mapa de decisiones**: para cada elemento del sistema, explica la decisión de diseño: ¿por qué
+   esa emisión, esas fuerzas, esa condición de muerte, esa visualización, qué significa la
+   interacción del usuario dentro del concepto?
+4. **Implementación**: enlace al código en el editor de p5.js + código fuente en la bitácora.
+5. **Capturas**: al menos 3 capturas de momentos diferentes del ciclo de vida.
+
+:::
+
+## Reflect: Consolidación y metacognición 🤔
+
+### Actividad 06
+
+:::caution[📤 Bitácora]
+
+**Parte 1 — Principios fundamentales**
+
+Describe con tus propias palabras cada uno de estos 10 principios:
+
+1. Una partícula es una entidad con estado.
+2. Una partícula tiene ciclo de vida.
+3. Un sistema de partículas gestiona colecciones dinámicas de elementos.
+4. La creación y eliminación de partículas no es un detalle técnico menor, sino parte central del modelo.
+5. Debe haber separación entre la lógica de una partícula individual y la lógica del sistema/emisor.
+6. Un emisor o particle system es una abstracción importante.
+7. Pueden existir sistemas de sistemas.
+8. Puede haber heterogeneidad usando herencia y polimorfismo.
+9. Las partículas pueden responder a fuerzas globales y locales.
+10. La representación visual puede variar sin cambiar el principio algorítmico de fondo.
+
+**Parte 2 — Transferencia a otra herramienta**
+
+Piensa en tu pieza del Apply: si la quisieras recrear en Unity (o TouchDesigner, o Blender),
+¿qué se mantendría igual y qué cambiaría? ¿Qué partes de tu diseño son independientes de la
+herramienta?
+
+:::
