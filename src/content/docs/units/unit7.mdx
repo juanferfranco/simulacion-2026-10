@@ -2,3 +2,298 @@
 title: Unidad 7
 unitId: unit7
 ---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Introducción 📜
+
+En esta unidad explorarás la **tipografía semántica**, es decir, la posibilidad de que la forma
+visual de una palabra refuerce, expanda o tensione su significado. Inspirados por el proyecto
+*Word as Image* de Ji Lee, trabajaremos con palabras que no solo se leen, sino que también actúan.
+
+Para hacerlo, integraremos **Matter.js** con **p5.js** y sumaremos una nueva dimensión
+obligatoria: la **reacción al audio**. La meta final será construir una pieza audiovisual en
+tiempo real donde una palabra se comporte física y sonoramente de manera coherente con su
+significado.
+
+La pieza final deberá funcionar como una obra escénica: de pantalla completa, sin dashboards ni
+instrucciones visibles, reactiva al audio y abierta a interpretación performativa en vivo.
+
+La IA podrá usarse como herramienta de apoyo para materializar, iterar o depurar ideas. Pero la
+palabra elegida, la dirección visual y las decisiones de diseño deberán ser de tu autoría.
+
+## Rúbrica de evaluación de la unidad 📝
+
+:::note[Transparencia]
+Esta rúbrica se socializa antes de la muestra pública. La evaluación se basa
+en la pieza presentada, la bitácora y la breve presentación oral del concepto.
+:::
+
+### Requisito de salida (condición necesaria)
+
+:::caution[Para poder cerrar la evaluación y registrar la nota]
+La **bitácora debe estar completamente diligenciada antes de comenzar la clase
+de muestra pública** y debe estar disponible para revisión en el momento de la
+presentación.
+
+Además, antes de ejecutar la pieza, cada estudiante deberá **explicar
+brevemente el concepto de su obra**. Si la bitácora no está terminada antes de
+clase o si no hay presentación oral del concepto, no se podrá cerrar la
+evaluación de la unidad.
+:::
+
+---
+
+### Rúbrica analítica
+
+:::tip[Evidencias evaluadas]
+
+1) Bitácora y proceso de diseño.
+2) Pieza tipográfica audiovisual en ejecución.
+3) Presentación pública del concepto.
+
+:::
+
+| Criterio (peso) | Cumple plenamente (5.0) | Se cumple medianamente (4.0) | Problemas importantes (3.0) | Falta comprensión básica (2.0) | No hay evidencia (0.0) |
+|---|---|---|---|---|---|
+| **1. Bitácora y proceso de diseño (40%)** | La bitácora documenta de forma completa y verificable el proceso: palabra elegida, intención semántica, referencias, bocetos, mapa de decisiones, mapa de interpretación, relación entre física y audio, y uso de IA. Todo es consistente con la pieza presentada. | La bitácora permite reconstruir el proceso, pero hay **1-2 vacíos menores** o decisiones poco desarrolladas. | La bitácora tiene **vacíos importantes**: faltan bocetos, no está clara la relación entre palabra, física y audio, o no se entiende cómo se diseñó la pieza. | La bitácora es fragmentaria y no permite comprender el proceso de diseño. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación|||||||
+| **2. Pieza tipográfica audiovisual en ejecución (40%)** | La pieza funciona de manera estable, en **pantalla completa**, sin dashboards ni instrucciones visibles, usando Matter.js de forma significativa, reaccionando al audio e incorporando interacción performativa. La forma, la física y el sonido refuerzan coherentemente el significado de la palabra. | La pieza funciona y cumple lo esencial, pero presenta **imprecisiones menores** en estabilidad, claridad semántica, relación audio-visual o calidad performativa. | La pieza funciona parcialmente o cumple solo una parte de los requisitos. El uso de la física o del audio se siente superficial o poco integrado al significado. | La pieza no funciona correctamente o no cumple varios requisitos centrales de la unidad. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación|||||||
+| **3. Presentación pública del concepto (20%)** | Explica con claridad y precisión la palabra elegida, el significado que quiso enfatizar, la relación entre comportamiento físico y audio, y la lógica de interpretación en vivo. | Presenta el concepto de forma comprensible, pero con **imprecisiones menores** o una justificación breve. | La explicación es superficial o desconectada de la pieza mostrada. | No logra explicar con claridad la relación entre palabra, diseño y ejecución. | No hubo presentación oral del concepto |
+|Evaluación|||||||
+
+---
+
+:::tip[Cálculo de la nota]
+
+$$
+Nota = C_1*0.4 + C_2*0.4 + C_3*0.2
+$$
+
+:::
+
+---
+
+## Set: ¿Qué aprenderás en esta unidad? 💡
+
+En esta unidad aprenderás a convertir una palabra en una pieza visual y sonora con intención
+semántica.
+
+Específicamente aprenderás:
+
+- Qué es la tipografía semántica y cómo una palabra puede comunicar por su forma.
+- Cómo analizar el proyecto *Word as Image* como referente de diseño.
+- Cómo usar Matter.js para construir comportamientos físicos en letras y palabras.
+- Cómo integrar audio en p5.js para que el sistema responda en tiempo real.
+- Cómo diseñar una pieza tipográfica audiovisual de pantalla completa, reactiva al audio e interpretable en vivo.
+- Cómo usar IA como herramienta de apoyo sin delegar la autoría conceptual.
+
+### Actividad 01: Ji Lee y la tipografía semántica
+
+En esta actividad te presentaré el proyecto [Word as Image](https://pleaseenjoy.com/#/word-as-image/)
+de Ji Lee.
+
+La idea es que observes cómo una palabra puede convertirse en imagen sin dejar de ser palabra.
+
+:::caution[📤 Bitácora]
+
+1. Analiza 3 o 4 ejemplos de Ji Lee.
+2. Explica cómo la manipulación tipográfica refuerza el significado.
+3. Propón 2 o 3 palabras propias y esboza cómo podrían representarse visualmente.
+4. Indica cuál de esas palabras te interesa más y por qué.
+
+:::
+
+## Seek: Investigación 🔎
+
+En esta fase vas a investigar tres dimensiones necesarias para el proyecto final: tipografía
+semántica, física y audio.
+
+### Actividad 02: Exploración de Matter.js
+
+Para dar comportamiento físico a una palabra, necesitas entender los conceptos fundamentales de
+Matter.js.
+
+Presta atención especialmente a:
+
+- `Engine`
+- `World`
+- `Bodies`
+- `Constraint`
+- `MouseConstraint`
+
+:::caution[📤 Bitácora]
+
+1. Explica con tus palabras qué hace cada uno de esos conceptos.
+2. Replica al menos dos experimentos básicos integrando Matter.js con p5.js.
+3. Incluye código y capturas o enlaces.
+4. Describe qué tipo de comportamiento físico te interesa explorar en tu palabra.
+
+:::
+
+### Actividad 03: Exploración de audio en p5.js
+
+En esta actividad vas a experimentar con audio para entender cómo traducir señales sonoras en
+decisiones visuales o físicas.
+
+Puedes explorar, por ejemplo:
+
+- Amplitud,
+- Energía,
+- Bandas de frecuencia,
+- Pulsos o eventos sonoros,
+- Respuesta continua o respuesta puntual.
+
+:::caution[📤 Bitácora]
+
+1. Realiza al menos dos experimentos simples de audio-reactividad.
+2. Explica qué dato estás leyendo del audio.
+3. Explica qué comportamiento visual o físico activa ese dato.
+4. Describe qué tipo de respuesta sonora te serviría más para tu palabra y por qué.
+
+:::
+
+### Actividad 04: Integración inicial de palabra, física y audio
+
+Antes de construir la pieza final, vas a realizar una prueba inicial donde una palabra o una parte
+de ella:
+
+- tenga comportamiento físico,
+- responda al audio,
+- y conserve una intención semántica.
+
+No tiene que ser la pieza final todavía. Debe ser una exploración que te permita probar decisiones.
+
+:::caution[📤 Bitácora]
+
+1. Muestra una prueba inicial.
+2. Explica qué parte de la palabra construiste.
+3. Explica qué propiedad física manipulaste.
+4. Explica qué aspecto del audio afecta qué comportamiento.
+5. Evalúa qué funcionó y qué no para el significado que quieres construir.
+
+:::
+
+## Apply: Aplicación 🛠
+
+### Actividad 05: Diseño de una pieza de tipografía semántica audio-reactiva
+
+Diseña e implementa una pieza tipográfica audiovisual en p5.js y Matter.js en la que una palabra
+se comporte física y sonoramente de manera coherente con su significado. La pieza debe ser de
+pantalla completa, no debe mostrar dashboards ni instrucciones visibles, debe reaccionar al audio
+y debe permitir intervención performativa en vivo.
+
+La prioridad no es solo que la palabra "se mueva", sino que el comportamiento visual, físico y
+sonoro refuerce el significado de la palabra elegida.
+
+#### Requisitos conceptuales y técnicos
+
+1. **Palabra con intención semántica**  
+   Qué es: una palabra elegida por su potencial visual y comportamental.
+   Para qué sirve: para que la pieza parta de una decisión conceptual.
+   Ejemplo: `caer`, `romper`, `flotar`, `temblar`, `conectar`, `estallar`.
+
+2. **Tipografía semántica**  
+   Qué es: la forma visual de la palabra debe reforzar o tensionar su significado.
+   Para qué sirve: para mantener el vínculo con `Word as Image`.
+   Ejemplo: `romper` puede fragmentarse; `flotar` puede organizarse con ligereza y separación.
+
+3. **Comportamiento físico con sentido**  
+   Qué es: el uso de Matter.js debe construir un comportamiento coherente con la palabra.
+   Para qué sirve: para que la física forme parte del significado.
+   Ejemplo: `elástico` puede depender de restricciones; `caer` puede trabajar con gravedad e impacto.
+
+4. **Respuesta al audio con sentido semántico**  
+   Qué es: la reacción al audio debe reforzar el significado de la palabra.
+   Para qué sirve: para evitar que el audio solo "haga que todo se mueva más".
+   Ejemplo: en `temblar`, el audio puede activar vibración; en `estallar`, puede detonar rupturas o expansión.
+
+5. **Pantalla completa**  
+   Qué es: la pieza debe ocupar toda la pantalla.
+   Para qué sirve: para que funcione como obra escénica e inmersiva.
+
+6. **Sin dashboards ni instrucciones visibles**  
+   Qué es: la pieza no debe mostrar sliders, paneles o textos de ayuda.
+   Para qué sirve: para sostener una experiencia visual limpia.
+
+7. **Interacción performativa**  
+   Qué es: la pieza debe poder ser intervenida en vivo.
+   Para qué sirve: para que funcione como instrumento audiovisual.
+   Ejemplo: teclado, mouse, controlador o micrófono modifican el estado del sistema.
+
+8. **Moodboard o referencias**  
+   Qué es: un conjunto breve de referencias visuales.
+   Para qué sirve: para orientar estilo, color, materialidad, peso y atmósfera.
+
+9. **Bocetos**  
+   Qué es: dibujos o esquemas previos de la pieza.
+   Para qué sirve: para pensar la palabra antes de implementarla.
+
+10. **Mapa de decisiones**  
+    Qué es: un esquema donde relacionas forma, física, audio, interacción y significado.
+    Para qué sirve: para hacer visible el diseño de la pieza.
+    Ejemplo:
+    - tipografía condensada: sensación de presión;
+    - constraints flexibles: elasticidad;
+    - graves: aumentan deformación;
+    - mouse: perturba el equilibrio.
+
+11. **Mapa de interpretación**  
+    Qué es: un esquema de cómo se ejecuta la pieza en vivo.
+    Para qué sirve: para demostrar que la interacción fue diseñada como parte de la obra.
+
+12. **Uso explícito de IA como materializador**  
+    Qué es: un registro de qué hiciste con IA y qué decisiones siguieron siendo tuyas.
+    Para qué sirve: para distinguir apoyo técnico de autoría conceptual.
+
+:::note
+Lo que se evalúa en esta actividad no es solo que la palabra "se vea interesante", sino que la
+pieza funcione como una propuesta tipográfica audiovisual diseñada, reactiva al audio e
+interpretable en vivo.
+:::
+
+:::caution[📤 Bitácora]
+
+Documenta el proceso completo:
+
+1. Palabra elegida.
+2. Justificación conceptual.
+3. Análisis de su significado visual y comportamental.
+4. Moodboard o referencias.
+5. Bocetos.
+6. Mapa de decisiones.
+7. Mapa de interpretación.
+8. Explicación de la relación entre audio y comportamiento.
+9. Evidencia del uso de IA.
+10. Código fuente.
+11. Enlace al sketch.
+12. Capturas o registros de la pieza.
+
+:::
+
+## Presentación pública
+
+### Actividad 06: Muestra pública de tipografía audiovisual
+
+En la última sesión de la unidad realizaremos una muestra pública de las piezas. Cada estudiante
+presentará su palabra en escena y ejecutará la pieza frente al grupo.
+
+La obra debe llegar lista. La sesión está pensada para ver, escuchar y disfrutar las piezas en
+escena.
+
+:::caution[📤 Presentación breve obligatoria]
+
+Antes de ejecutar la pieza debes explicar en 1 o 2 minutos:
+
+1. Cuál es la palabra elegida,
+2. qué significado quisiste enfatizar,
+3. cómo el comportamiento físico y la respuesta al audio construyen ese significado,
+4. y cómo se interpreta la pieza en vivo.
+
+:::
+
+:::note
+La muestra pública reemplaza la actividad de reflexión escrita de esta unidad. El cierre de la
+unidad ocurre poniendo la obra en escena.
+:::
