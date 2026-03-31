@@ -2,3 +2,359 @@
 title: Unidad 6
 unitId: unit6
 ---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Introducción 📜
+
+En esta unidad explorarás el capítulo de **agentes autónomos** de *The Nature of Code*. A diferencia
+de los sistemas que has visto antes, aquí los elementos visuales no solo reaccionan a fuerzas externas:
+también toman decisiones de movimiento a partir de reglas internas y de su relación con el entorno.
+
+Esto nos lleva a un terreno especialmente fértil para el arte y el diseño generativo. Algoritmos como los
+**flow fields** y el **flocking** no son solo soluciones computacionales para mover elementos en pantalla.
+Son sistemas capaces de producir dirección, ritmo, agrupación, dispersión, densidad y emergencia. En otras
+palabras: son materia prima para diseñar visuales vivas.
+
+En esta unidad el objetivo no es usar estos algoritmos como recetas cerradas, sino analizarlos como
+herramientas de diseño. La meta final será crear una pieza visual generativa en tiempo real para acompañar
+un tema musical. Esa pieza deberá funcionar como un **instrumento visual**: será de pantalla completa, sin
+dashboards ni interfaces visibles, reactiva al audio y abierta a interpretación performativa en vivo.
+
+La IA podrá ser usada como herramienta de apoyo para materializar, iterar o depurar ideas. Pero el
+concepto, la dirección visual y las decisiones de diseño deberán ser de tu autoría.
+
+## Rúbrica de evaluación de la unidad 📝
+
+:::note[Transparencia]
+Esta rúbrica se socializa antes de la muestra pública. La evaluación se
+basa en lo presentado en la pieza visual, lo documentado en la bitácora y
+la breve presentación oral del concepto.
+:::
+
+### Requisito de salida (condición necesaria)
+
+:::caution[Para poder cerrar la evaluación y registrar la nota]
+La **bitácora debe estar completamente diligenciada antes de comenzar la clase
+de muestra pública** y debe estar disponible para revisión en el momento de la
+presentación.
+
+Además, antes de ejecutar la pieza, cada estudiante deberá **explicar
+brevemente el concepto de sus visuales**. Si la bitácora no está terminada
+antes de clase o si no hay presentación oral del concepto, no se podrá cerrar
+la evaluación de la unidad.
+:::
+
+---
+
+### Rúbrica analítica
+
+:::tip[Evidencias evaluadas]
+
+1) Bitácora y proceso de diseño.
+2) Pieza visual en ejecución.
+3) Presentación pública del concepto.
+
+:::
+
+| Criterio (peso) | Cumple plenamente (5.0) | Se cumple medianamente (4.0) | Problemas importantes (3.0) | Falta comprensión básica (2.0) | No hay evidencia (0.0) |
+|---|---|---|---|---|---|
+| **1. Bitácora y proceso de diseño (40%)** | La bitácora documenta de forma completa y verificable el proceso: concepto, relación con la música, moodboard, bocetos, mapa de decisiones, mapa de interpretación, justificación del algoritmo y uso de IA. Todo es consistente con la pieza presentada. | La bitácora permite reconstruir el proceso, pero hay **1-2 vacíos menores** o decisiones poco desarrolladas. | La bitácora tiene **vacíos importantes**: faltan bocetos, no hay mapa de decisiones, no está clara la relación con la música o el uso del algoritmo. | La bitácora es fragmentaria y no permite comprender cómo se diseñó la pieza. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación|||||||
+| **2. Pieza visual en ejecución (40%)** | La pieza funciona de manera estable, en **pantalla completa**, sin dashboards ni instrucciones visibles, reacciona al audio y permite interpretación performativa en vivo. La propuesta visual es coherente con el concepto y se percibe como una obra unificada. | La pieza funciona y cumple lo esencial, pero presenta **imprecisiones menores** en estabilidad, relación audio-visual o claridad performativa. | La pieza funciona parcialmente o cumple solo una parte de los requisitos. La reactividad al audio o la interacción se sienten superficiales o poco integradas. | La pieza no funciona correctamente o no cumple con varios requisitos centrales de la unidad. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación|||||||
+| **3. Presentación pública del concepto (20%)** | Explica con claridad y precisión el concepto de la obra, su relación con la música, el comportamiento visual diseñado y la lógica de interpretación en vivo. La presentación orienta la experiencia del público sin reemplazarla. | Presenta el concepto de forma comprensible, pero con **imprecisiones menores** o una justificación breve. | La explicación es superficial o desconectada de la pieza mostrada. | No logra explicar con claridad el concepto ni la relación entre diseño y ejecución. | No hubo presentación oral del concepto |
+|Evaluación|||||||
+
+---
+
+:::tip[Cálculo de la nota]
+
+$$
+Nota = C_1*0.4 + C_2*0.4 + C_3*0.2
+$$
+
+:::
+
+---
+
+## Set: ¿Qué aprenderás en esta unidad? 💡
+
+En esta unidad comprenderás que los agentes autónomos son una forma de diseñar comportamiento visual
+en tiempo real.
+
+Específicamente aprenderás:
+
+- Qué es un agente autónomo y qué lo diferencia de una partícula o de un objeto pasivo.
+- Qué es una **steering force** y cómo permite modelar decisiones de movimiento.
+- Cómo funcionan algunos algoritmos del capítulo de agentes autónomos de *The Nature of Code*.
+- Cómo analizar algoritmos como herramientas de diseño visual y no solo como procedimientos técnicos.
+- Cómo construir una pieza visual generativa de pantalla completa, reactiva al audio y abierta a interpretación performativa.
+- Cómo usar IA como herramienta de materialización o depuración sin delegar la autoría conceptual.
+
+### Actividad 01: Un referente para pensar sistemas visuales
+
+En esta actividad te presentaré el trabajo de [Tyler Hobbs](https://www.tylerxhobbs.com/) y, en
+particular, su texto sobre [flow fields](https://www.tylerxhobbs.com/words/flow-fields).
+
+La idea no es solo que "te inspires", sino que aprendas a mirar una obra generativa como el
+resultado de un sistema de decisiones visuales.
+
+:::caution[📤 Bitácora]
+
+1. Selecciona dos imágenes o piezas de Tyler Hobbs que te llamen la atención.
+2. Describe qué decisiones visuales reconoces en ellas:
+   - composición,
+   - densidad,
+   - dirección del movimiento,
+   - color,
+   - ritmo,
+   - repetición y variación.
+3. Explica por qué esas decisiones te parecen potentes.
+4. Escribe una hipótesis: ¿Qué tipo de reglas o sistema crees que podrían estar detrás de esa pieza?
+
+:::
+
+## Seek: Investigación 🔎
+
+En esta fase vas a analizar algunos de los algoritmos del capítulo de
+[Autonomous Agents](https://natureofcode.com/autonomous-agents/) del texto guía. El objetivo no es
+solo entender cómo funcionan, sino reconocer qué posibilidades de diseño abre cada uno.
+
+### Actividad 02: Agentes autónomos y steering forces
+
+Antes de entrar a ejemplos concretos, vas a aclarar tres ideas fundamentales:
+
+1. ¿Qué es un agente autónomo?
+2. ¿Qué es una **steering force**?
+3. ¿En qué se diferencia una steering force de fuerzas como gravedad, viento o fricción?
+
+Puedes apoyarte en el inicio del capítulo y en la sección sobre *Vehicles and Steering*.
+
+:::caution[📤 Bitácora]
+
+1. Explica con tus propias palabras qué es un agente autónomo.
+2. Explica qué es una `steering force`.
+3. Compara una `steering force` con una fuerza externa como la gravedad.
+4. Describe por qué estas ideas son útiles para diseñar comportamiento visual y no solo para simular movimiento.
+
+:::
+
+### Actividad 03: Flow Fields
+
+Estudia la sección de [Flow Fields](https://natureofcode.com/autonomous-agents/#flow-fields).
+
+Aquí vas a analizar cómo una estructura invisible de vectores puede organizar el movimiento de muchos
+agentes y producir una estética determinada.
+
+:::caution[📤 Bitácora]
+
+1. ¿Cómo está construido el campo de flujo?
+2. ¿Qué representa cada celda o vector del campo?
+3. ¿Cómo usa un agente su posición para consultar el campo?
+4. ¿Cómo se convierte el vector consultado en una decisión de movimiento?
+5. Identifica parámetros importantes del sistema, por ejemplo:
+   - resolución,
+   - `maxspeed`,
+   - `maxforce`,
+   - cantidad de agentes.
+6. Realiza al menos una modificación y analiza el efecto visual que produce.
+
+Además, responde:
+
+- ¿Qué tipo de movimiento produce este algoritmo?
+- ¿Qué sensaciones visuales te sugiere?
+- ¿En qué tipo de pieza musical imaginas que podría funcionar bien?
+
+:::
+
+### Actividad 04: Flocking
+
+Estudia la sección de [Flocking](https://natureofcode.com/autonomous-agents/#flocking).
+
+Aquí vas a analizar cómo reglas locales simples pueden producir comportamiento colectivo emergente.
+
+:::caution[📤 Bitácora]
+
+1. Explica con tus palabras las tres reglas básicas:
+   - separación,
+   - alineación,
+   - cohesión.
+2. Identifica qué parámetros controlan estas reglas.
+3. Modifica uno o más pesos del sistema y describe el efecto visual y colectivo.
+4. Describe el comportamiento emergente observado:
+   - compacto,
+   - disperso,
+   - estable,
+   - nervioso,
+   - caótico,
+   - fluido.
+
+Además, responde:
+
+- ¿Qué atmósfera visual produce el flocking?
+- ¿En qué tipo de relación con una canción podría funcionar mejor este algoritmo?
+
+:::
+
+### Actividad 05: Comparar algoritmos como herramientas de diseño
+
+Hasta este punto ya no basta con entender "qué hace" cada algoritmo. Ahora necesitas compararlos
+como recursos de diseño.
+
+:::caution[📤 Bitácora]
+
+Completa una comparación entre `flow fields` y `flocking` a partir de los siguientes aspectos:
+
+- tipo de movimiento que producen,
+- nivel de control visual,
+- nivel de emergencia,
+- tipo de atmósfera o sensación,
+- relación posible con una pieza musical,
+- ventajas y limitaciones de cada uno.
+
+Cierra la actividad respondiendo:
+
+Si quisieras diseñar visuales para una canción contemplativa, agresiva, melancólica o eufórica,
+¿Cuál algoritmo usarías en cada caso y por qué?
+
+:::
+
+## Apply: Aplicación 🛠
+
+### Actividad 06: Diseño de un instrumento visual para un tema musical
+
+Diseña e implementa una pieza visual generativa en p5.js para interpretar un tema musical en tiempo
+real. La pieza debe funcionar como un **instrumento visual**: debe ocupar toda la pantalla,
+reaccionar al audio y permitir intervención performativa durante la ejecución. No debe mostrar
+dashboards, sliders, botones ni instrucciones visibles en escena.
+
+La prioridad de esta actividad no es producir código complejo por sí mismo, sino construir una
+propuesta visual con intención conceptual, criterio formal y posibilidad de interpretación en vivo.
+Primero debes diseñar la propuesta; luego puedes usar IA para ayudarte a materializarla, iterarla
+o depurarla, pero no para sustituir tu autoría.
+
+#### Requisitos conceptuales y técnicos
+
+1. **Concepto visual**  
+   Qué es: la idea central que orienta la pieza.
+   Para qué sirve: para que la visual no sea solo una demostración técnica.
+   Ejemplo: "Quiero traducir la sensación de acumulación y desborde de la canción en una masa de agentes que se comprime y explota".
+
+2. **Relación con el tema musical**  
+   Qué es: la conexión entre el sonido y las decisiones del sistema visual.
+   Para qué sirve: para que la música no sea un fondo decorativo, sino una dimensión estructural de la pieza.
+   Ejemplo: "En las secciones más densas de la canción, los agentes se agrupan; en los silencios, se dispersan".
+
+3. **Pantalla completa**  
+   Qué es: la pieza debe ocupar toda la pantalla durante la ejecución.
+   Para qué sirve: para construir una experiencia inmersiva y escénica.
+   Ejemplo: el canvas llena la ventana y no comparte espacio con paneles o menús visibles.
+
+4. **Sin dashboards ni instrucciones en pantalla**  
+   Qué es: la visual no debe mostrar sliders, texto explicativo, botones ni paneles de control visibles.
+   Para qué sirve: para que funcione como obra performativa y no como prototipo de laboratorio.
+   Ejemplo: si necesitas controles, deben estar resueltos con teclado, mouse, audio, MIDI o estados internos del sistema.
+
+5. **Reactividad al audio**  
+   Qué es: el sistema debe responder en tiempo real a características del audio.
+   Para qué sirve: para que la visual dialogue con la música.
+   Ejemplo: amplitud, energía o bandas de frecuencia modifican densidad, velocidad, agrupación o intensidad del movimiento.
+
+6. **Interacción performativa**  
+   Qué es: la pieza debe poder ser intervenida en vivo como si se tocara un instrumento visual.
+   Para qué sirve: para que no sea una animación automática, sino una visual interpretable.
+   Ejemplo: el mouse perturba el sistema, unas teclas cambian modos de comportamiento o un controlador altera parámetros durante la ejecución.
+
+7. **Interacción con sentido musical**  
+   Qué es: la interacción no debe ser arbitraria, sino útil para interpretar la pieza.
+   Para qué sirve: para que cada gesto tenga un valor expresivo.
+   Ejemplo: una tecla activa una variación visual adecuada para el clímax; otra reduce densidad para un momento de pausa.
+
+8. **Moodboard o referencias**  
+   Qué es: un conjunto breve de imágenes, obras, paletas o texturas que orientan la estética.
+   Para qué sirve: para que las decisiones formales no se tomen al azar.
+   Ejemplo: 4 o 5 referencias con notas sobre color, atmósfera, trazo, densidad y composición.
+
+9. **Bocetos**  
+   Qué es: dibujos o esquemas previos de la pieza.
+   Para qué sirve: para pensar primero en diseño y luego en implementación.
+   Ejemplo: un boceto del comportamiento general y otro de un momento de clímax.
+
+10. **Mapa de decisiones**  
+    Qué es: un esquema que relaciona cada aspecto importante de la pieza con una intención de diseño.
+    Para qué sirve: para hacer visible que el resultado proviene de decisiones conscientes.
+    Ejemplo:
+    - color oscuro: atmósfera contenida;
+    - flocking con baja cohesión: tensión e inestabilidad;
+    - respuesta a graves: sensación de peso.
+
+11. **Mapa de interpretación**  
+    Qué es: un esquema de cómo se "toca" la visual.
+    Para qué sirve: para demostrar que la interacción fue diseñada como performance y no añadida al final.
+    Ejemplo:
+    - `mouse`: perturba el flujo,
+    - `A/S/D`: cambia entre modos visuales,
+    - audio: controla energía general.
+
+12. **Uso justificado del algoritmo**  
+    Qué es: la explicación de por qué elegiste `flow fields`, `flocking` o una combinación.
+    Para qué sirve: para que el algoritmo sea una decisión de diseño y no solo una obligación técnica.
+    Ejemplo: "Elegí flow fields porque necesito una sensación de corriente continua más que un comportamiento grupal".
+
+13. **Uso explícito de IA como materializador**  
+    Qué es: un registro breve de qué le pediste a la IA y para qué.
+    Para qué sirve: para distinguir entre apoyo técnico y autoría conceptual.
+    Ejemplo: "Usé IA para proponer variaciones de implementación del trail y depurar un error; el concepto y la dirección visual fueron míos".
+
+:::note
+Lo que se evalúa en esta actividad no es solo que "haya código funcionando", sino que la pieza
+funcione como una propuesta visual diseñada, reactiva al audio e interpretable en vivo.
+:::
+
+:::caution[📤 Bitácora]
+
+Documenta el proceso completo:
+
+1. Concepto visual.
+2. Relación entre la visual y la canción.
+3. Moodboard o referencias.
+4. Dos o más bocetos.
+5. Mapa de decisiones.
+6. Mapa de interpretación.
+7. Justificación del algoritmo elegido.
+8. Explicación de la relación audio-visual.
+9. Evidencia del uso de IA.
+10. Código fuente.
+11. Enlace al sketch.
+12. Capturas o registros de momentos importantes de la pieza.
+
+:::
+
+## Presentación pública
+
+### Actividad 07: Muestra de visuales en vivo
+
+En la última sesión de la unidad realizaremos una muestra pública de las piezas desarrolladas. Cada
+estudiante presentará su sistema visual en tiempo real y lo ejecutará frente al grupo.
+
+La idea de esta sesión no es seguir completando proceso ni hacer ajustes de última hora. La obra debe
+llegar lista. La sesión está pensada para ver, escuchar y disfrutar las piezas en escena.
+
+Antes de comenzar la ejecución, presentarás muy brevemente tu obra.
+
+:::caution[📤 Presentación breve obligatoria]
+
+Antes de ejecutar tu pieza debes explicar en 1 o 2 minutos:
+
+1. Cuál es el concepto de tu obra,
+2. cómo se relaciona con el tema musical,
+3. qué tipo de comportamiento visual diseñaste,
+4. y de qué manera se interpreta o ejecuta en vivo.
+
+:::
+
+:::note
+La muestra pública reemplaza la actividad de reflexión escrita de esta unidad. El cierre de la unidad
+ocurre poniendo la obra en escena.
+:::
