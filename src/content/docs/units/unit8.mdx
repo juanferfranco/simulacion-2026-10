@@ -2,3 +2,326 @@
 title: Unidad 8
 unitId: unit8
 ---
+
+import { Aside } from '@astrojs/starlight/components';
+
+## Introducción 📜
+
+En esta unidad final trabajarás la **transferencia de aprendizaje**. A lo largo del curso
+exploraste sistemas generativos, simulación, movimiento, fuerzas, partículas, agentes autónomos,
+flow fields, flocking y tipografía semántica usando p5.js como medio de estudio. Pero p5.js no era
+el fin. Era un laboratorio para comprender principios que pueden existir en muchas otras
+herramientas profesionales.
+
+Ahora vas a elegir una herramienta alineada con tu línea de énfasis o interés profesional y
+transferirás a ella uno de los sistemas trabajados en el curso. El reto no consiste en copiar una
+implementación, sino en reconstruir un sistema entendiendo su lógica, sus parámetros, su
+comportamiento y su potencial expresivo.
+
+La pieza final deberá responder a un **contexto profesional concreto**. Puede tratarse de una
+visual para un artista musical, un evento, una instalación, una obra escénica, una marca cultural,
+un portafolio o cualquier otro contexto alineado con tu interés profesional.
+
+La unidad cerrará con una muestra pública. Dependiendo de la herramienta elegida, la presentación
+podrá tomar la forma de una ejecución visual en vivo o de una demostración pública del sistema y
+del resultado final.
+
+## Rúbrica de evaluación de la unidad 📝
+
+:::note[Transparencia]
+Esta rúbrica se socializa antes de la muestra pública. La evaluación se basa
+en la pieza presentada, la bitácora y la breve presentación oral del
+concepto y de la transferencia.
+:::
+
+### Requisito de salida (condición necesaria)
+
+:::caution[Para poder cerrar la evaluación y registrar la nota]
+La **bitácora debe estar completamente diligenciada antes de comenzar la clase
+de muestra pública** y debe estar disponible para revisión en el momento de la
+presentación.
+
+Además, antes de presentar la pieza, cada estudiante deberá **explicar
+brevemente qué herramienta eligió, qué sistema transfirió y cuál es el
+contexto profesional de su propuesta**. Si la bitácora no está terminada antes
+de clase o si no hay presentación oral del concepto y de la transferencia, no
+se podrá cerrar la evaluación de la unidad.
+:::
+
+---
+
+### Rúbrica analítica
+
+:::tip[Evidencias evaluadas]
+
+1) Bitácora y proceso de transferencia.
+2) Pieza final y estrategia de presentación pública.
+3) Presentación oral del concepto y de la transferencia.
+
+:::
+
+| Criterio (peso) | Cumple plenamente (5.0) | Se cumple medianamente (4.0) | Problemas importantes (3.0) | Falta comprensión básica (2.0) | No hay evidencia (0.0) |
+|---|---|---|---|---|---|
+| **1. Bitácora y proceso de transferencia (40%)** | La bitácora documenta de forma completa y verificable la herramienta elegida, el sistema transferido, su funcionamiento en p5.js, la traducción a la nueva herramienta, el contexto profesional, referencias, bocetos, mapa de decisiones, mapa de presentación y uso de IA. Todo es consistente con la pieza mostrada. | La bitácora permite reconstruir el proceso, pero hay **1-2 vacíos menores** o decisiones poco desarrolladas. | La bitácora tiene **vacíos importantes**: no se entiende bien la transferencia, falta la justificación de la herramienta, faltan bocetos o no está claro el contexto profesional. | La bitácora es fragmentaria y no permite comprender el proceso de transferencia y diseño. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación|||||||
+| **2. Pieza final y estrategia de presentación pública (40%)** | La pieza evidencia una transferencia clara de un sistema del curso a la nueva herramienta. El resultado es coherente con el contexto profesional elegido, está visualmente resuelto y se presenta de forma adecuada a la herramienta: ejecución en vivo cuando corresponde o demostración convincente del sistema y del resultado en el caso de Blender. | La pieza funciona y la transferencia es reconocible, pero presenta **imprecisiones menores** en coherencia visual, estabilidad técnica o claridad de la estrategia de presentación. | La pieza funciona parcialmente o la transferencia se percibe superficial. La presentación pública no aprovecha bien la herramienta elegida o no deja claro el sistema transferido. | La pieza no funciona correctamente o no demuestra una transferencia comprensible del sistema elegido. | No se entregaron evidencias o no se puede acceder a ellas |
+|Evaluación|||||||
+| **3. Presentación oral del concepto y de la transferencia (20%)** | Explica con claridad la herramienta elegida, el sistema transferido, qué se mantuvo y qué cambió al salir de p5.js, cuál es el contexto profesional de la pieza y cómo resolvió la presentación final. | Presenta el concepto y la transferencia de forma comprensible, pero con **imprecisiones menores** o una justificación breve. | La explicación es superficial o desconectada de la pieza mostrada. | No logra explicar con claridad la relación entre sistema, herramienta, contexto y resultado. | No hubo presentación oral del concepto y de la transferencia |
+|Evaluación|||||||
+
+---
+
+:::tip[Cálculo de la nota]
+
+$$
+Nota = C_1*0.4 + C_2*0.4 + C_3*0.2
+$$
+
+:::
+
+---
+
+## Set: ¿Qué aprenderás en esta unidad? 💡
+
+En esta unidad aprenderás a transferir un sistema estudiado en el curso a una herramienta alineada
+con tu interés profesional.
+
+Específicamente aprenderás:
+
+- A reconocer que los sistemas trabajados en p5.js son transferibles a otros entornos.
+- A seleccionar una herramienta según tu línea de énfasis o interés profesional.
+- A traducir un sistema del curso a una nueva lógica técnica.
+- A diseñar una pieza visual para un contexto de aplicación concreto.
+- A presentar públicamente una obra final explicando tanto su concepto como su transferencia.
+
+### Actividad 01: Explorar contextos profesionales y herramientas
+
+En esta actividad vas a identificar qué herramienta te interesa explorar y en qué tipo de contexto
+profesional imaginas aplicar lo aprendido en el curso.
+
+Puedes elegir una de estas herramientas:
+
+- TouchDesigner
+- Unity
+- Unreal Engine
+- Blender con Geometry Nodes
+- Cables.gl
+
+Y puedes orientar la pieza hacia un contexto como:
+
+- Visual para un artista o banda,
+- visual para un evento,
+- pieza para una instalación,
+- visual para una obra escénica,
+- pieza para una marca cultural,
+- visual para tu portafolio profesional,
+- u otro contexto coherente con tu interés profesional.
+
+:::caution[📤 Bitácora]
+
+1. Indica qué herramienta te interesa explorar y por qué.
+2. Explica qué relación tiene esa herramienta con tu línea de énfasis o interés profesional.
+3. Busca 2 o 3 referentes realizados con esa herramienta o cercanos a su ecosistema.
+4. Explica qué te interesa de esos referentes.
+5. Propón uno o dos posibles contextos profesionales para tu pieza final.
+
+:::
+
+## Seek: Investigación 🔎
+
+### Actividad 02: Elegir el sistema que vas a transferir
+
+En esta actividad deberás elegir **uno de los sistemas trabajados en el curso** y definir por qué
+tiene sentido transferirlo a la herramienta seleccionada.
+
+Puedes elegir, por ejemplo:
+
+- aleatoriedad o ruido,
+- motion 101,
+- fuerzas,
+- oscilación,
+- sistemas de partículas,
+- agentes autónomos,
+- flow fields,
+- flocking,
+- tipografía semántica animada.
+
+:::caution[📤 Bitácora]
+
+1. Indica qué sistema del curso vas a transferir.
+2. Explica brevemente cómo funcionaba ese sistema en p5.js.
+3. Justifica por qué quieres transferirlo a la herramienta elegida.
+4. Explica qué tipo de pieza visual te imaginas construir con esa combinación.
+5. Señala qué dificultades técnicas anticipas.
+
+:::
+
+### Actividad 03: Investigar los equivalentes técnicos en la nueva herramienta
+
+Ahora debes estudiar qué componentes, nodos, módulos o estructuras de la herramienta elegida te
+permitirán reconstruir el sistema.
+
+No se trata de aprender toda la herramienta, sino de identificar los bloques necesarios para la
+transferencia.
+
+:::caution[📤 Bitácora]
+
+1. Describe qué componentes o módulos necesitas aprender en tu herramienta.
+2. Realiza al menos dos pruebas técnicas.
+3. Explica qué resuelve cada prueba.
+4. Indica qué parte del sistema ya lograste reconstruir.
+5. Explica qué parte sigue sin resolverse.
+
+:::
+
+### Actividad 04: Estudio de transferencia
+
+Esta actividad es el corazón conceptual de la unidad. Aquí debes hacer explícita la transferencia.
+
+:::caution[📤 Bitácora]
+
+Construye una tabla, esquema o mapa comparando:
+
+- cómo funcionaba el sistema en p5.js,
+- cómo se implementa en la nueva herramienta,
+- qué se mantiene,
+- qué cambia,
+- qué ventajas aparecen,
+- qué limitaciones nuevas surgen.
+
+Cierra respondiendo:
+
+¿Qué aprendiste sobre el sistema al tener que reconstruirlo fuera de p5.js?
+
+:::
+
+## Apply: Aplicación 🛠
+
+### Actividad 05: Diseño e implementación de una pieza visual transferida
+
+Diseña e implementa una pieza visual para un contexto profesional concreto, transfiriendo a la
+herramienta elegida uno de los sistemas trabajados en el curso.
+
+La prioridad no es demostrar dominio total de la herramienta, sino evidenciar comprensión,
+traducción y apropiación de un principio aprendido durante el semestre.
+
+#### Requisitos conceptuales y técnicos
+
+1. **Herramienta elegida con justificación**  
+   Qué es: la selección consciente de una plataforma según tu interés profesional.
+   Para qué sirve: para que la unidad dialogue con tu trayectoria y tus intereses.
+
+2. **Sistema transferido**  
+   Qué es: uno de los sistemas estudiados en el curso que será reconstruido en otra herramienta.
+   Para qué sirve: para centrar la unidad en transferencia y no en exploración dispersa.
+
+3. **Contexto profesional concreto**  
+   Qué es: la situación de uso para la cual diseñas la pieza.
+   Para qué sirve: para que el proyecto responda a un problema de diseño realista.
+   Ejemplo: visual para una banda, apertura de evento, instalación, obra escénica, marca cultural, portafolio.
+
+4. **Concepto visual**  
+   Qué es: la idea que orienta la pieza.
+   Para qué sirve: para que la transferencia no sea solo técnica, sino también expresiva.
+
+5. **Explicación de transferencia**  
+   Qué es: una explicación clara de cómo el sistema pasó de p5.js a la nueva herramienta.
+   Para qué sirve: para evidenciar comprensión del principio.
+
+6. **Pieza final resuelta**  
+   Qué es: una pieza visual suficientemente desarrollada para ser mostrada públicamente.
+   Para qué sirve: para que el cierre del curso tenga forma de obra y no solo de experimento.
+
+7. **Pantalla completa o presentación limpia**  
+   Qué es: la pieza debe mostrarse sin dashboards ni interfaces visibles del entorno de edición.
+   Para qué sirve: para que se perciba como obra terminada y no como sesión de trabajo.
+
+8. **Estrategia de presentación coherente con la herramienta**  
+   Qué es: la manera en que se mostrará públicamente la pieza.
+   Para qué sirve: para adaptar el cierre a la naturaleza de cada herramienta.
+   Ejemplo: ejecución en vivo en TouchDesigner, demo interactiva en Unity, render + demostración del sistema en Blender.
+
+9. **Moodboard o referencias**  
+   Qué es: un conjunto de referentes visuales o técnicos.
+   Para qué sirve: para orientar la dirección estética de la pieza.
+
+10. **Bocetos**  
+    Qué es: esquemas previos de la pieza o de su puesta en escena.
+    Para qué sirve: para pensar diseño antes de cerrar implementación.
+
+11. **Mapa de decisiones**  
+    Qué es: un esquema donde relacionas sistema, herramienta, visualidad e interacción o presentación.
+    Para qué sirve: para mostrar un proceso de diseño consciente.
+
+12. **Mapa de presentación**  
+    Qué es: un esquema de cómo se mostrará la pieza en la muestra pública.
+    Para qué sirve: para planear el cierre final según la herramienta elegida.
+
+13. **Uso explícito de IA como materializador**  
+    Qué es: un registro de qué resolviste con IA y qué decisiones siguieron siendo tuyas.
+    Para qué sirve: para distinguir apoyo técnico de autoría conceptual.
+
+:::caution[📤 Bitácora]
+
+1. Herramienta elegida.
+2. Sistema transferido.
+3. Contexto profesional concreto.
+4. Concepto visual.
+5. Referencias.
+6. Bocetos.
+7. Explicación de la transferencia.
+8. Mapa de decisiones.
+9. Mapa de presentación.
+10. Evidencia del uso de IA.
+11. Código, archivo, proyecto o documentación técnica según la herramienta.
+12. Registro visual de la pieza.
+
+:::
+
+## Presentación pública
+
+### Actividad 06: Muestra final de transferencia
+
+En la última sesión del curso realizaremos una muestra pública de cierre. Cada estudiante
+presentará su proyecto final y explicará brevemente su proceso de transferencia.
+
+#### Modalidades de presentación
+
+**Modalidad A: ejecución en vivo**
+
+Aplica especialmente a:
+
+- TouchDesigner
+- Unity
+- Unreal
+- Cables.gl
+
+Aquí se espera que la pieza se ejecute en tiempo real durante la muestra.
+
+**Modalidad B: demostración pública del sistema**
+
+Aplica especialmente a:
+
+- Blender con Geometry Nodes
+
+Aquí se permite presentar:
+
+- Un render o reproducción del resultado visual,
+- acompañado de una demostración breve del sistema dentro de Blender, explicando cómo se logró la transferencia.
+
+:::caution[📤 Presentación breve obligatoria]
+
+Antes de mostrar tu pieza debes explicar en 1 o 2 minutos:
+
+1. ¿Qué herramienta elegiste?
+2. ¿Qué sistema del curso transferiste?
+3. ¿Qué se mantuvo y qué cambió al salir de p5.js?
+4. ¿Cuál es el contexto profesional concreto de tu pieza?
+5. ¿Y cómo resolviste su presentación final?
+
+:::
+
+:::note
+La muestra pública reemplaza la actividad de reflexión escrita de esta unidad. El cierre del curso
+ocurre poniendo en escena la transferencia de aprendizaje.
+:::
